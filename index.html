@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Stardew Valley Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="sidebar">
+    <h2>🌾 Stardew Dashboard</h2>
+    <button class="nav-btn active" onclick="showTab('overview')">Overview</button>
+    <button class="nav-btn" onclick="showTab('crops')">Crops</button>
+    <button class="nav-btn" onclick="showTab('characters')">Characters</button>
+  </div>
+
+  <div class="main-content">
+
+    <!-- OVERVIEW TAB -->
+    <div id="overview" class="tab-content">
+      <h1>Overview</h1>
+
+      <div class="season-row">
+        <div class="season-card">
+          <div class="season-title">🌸 SPRING</div>
+          <div class="season-count" id="springCount">--</div>
+          <div class="season-label">crops</div>
+        </div>
+        <div class="season-card">
+          <div class="season-title">☀️ SUMMER</div>
+          <div class="season-count" id="summerCount">--</div>
+          <div class="season-label">crops</div>
+        </div>
+        <div class="season-card">
+          <div class="season-title">🍂 FALL</div>
+          <div class="season-count" id="fallCount">--</div>
+          <div class="season-label">crops</div>
+        </div>
+        <div class="season-card">
+          <div class="season-title">❄️ WINTER</div>
+          <div class="season-count" id="winterCount">--</div>
+          <div class="season-label">crops</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0;">Growth Time vs Sell Price</h3>
+          <select id="overviewSeasonFilter" onchange="updateOverviewScatter()">
+            <option value="All">All Seasons</option>
+            <option value="Spring">Spring</option>
+            <option value="Summer">Summer</option>
+            <option value="Fall">Fall</option>
+            <option value="Winter">Winter</option>
+          </select>
+        </div>
+        <canvas id="overviewScatter" height="300"></canvas>
+      </div>
+    </div>
+
+    <!-- CROPS TAB -->
+    <div id="crops" class="tab-content" style="display: none;">
+      <h1>Crops</h1>
+
+      <div class="card">
+        <h3>Top 10 Most Valuable Crops</h3>
+        <canvas id="cropValueChart" width="600" height="300"></canvas>
+      </div>
+
+      <div class="card">
+        <h3>Average Value by Season</h3>
+        <canvas id="cropSeasonChart" width="600" height="300"></canvas>
+      </div>
+    </div>
+
+    <!-- CHARACTERS TAB -->
+    <div id="characters" class="tab-content" style="display: none;">
+      <h1>Characters</h1>
+
+      <div class="card">
+        <h3>Villager Gift Guide</h3>
+        <select id="villagerSelect" onchange="showVillager()">
+          <option value="">-- Choose a villager --</option>
+        </select>
+
+        <div id="villagerInfo" style="margin-top: 20px;"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
